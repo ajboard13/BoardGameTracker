@@ -151,6 +151,8 @@ export class RoomComponent implements OnInit {
         this.getPlayerInfo();
         this.getRoomInfo();
         this.getPlayersInfo();
+      }else {
+        this.router.navigateByUrl('/login');
       }
     });
   }

@@ -63,6 +63,8 @@ export class MembersComponent implements OnInit {
         this.acctId = auth.uid;
         this.getPlayerInfo();
         this.getRooms();
+      } else {
+        this.router.navigateByUrl('/login');
       }
     });
 

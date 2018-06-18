@@ -47,6 +47,8 @@ export class RoomSignInComponent implements OnInit {
         this.name = auth.displayName;
         this.photoUrl = auth.photoURL;
         this.acctId = auth.uid;
+      }else {
+        this.router.navigateByUrl('/login');
       }
     });
   }

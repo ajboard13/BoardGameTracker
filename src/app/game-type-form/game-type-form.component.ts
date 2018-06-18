@@ -50,6 +50,8 @@ export class GameTypeFormComponent implements OnInit {
         this.photoUrl = auth.photoURL;
         this.acctId = auth.uid;
         this.getPlayerInfo();
+      }else {
+        this.router.navigateByUrl('/login');
       }
     });
   }
