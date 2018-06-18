@@ -1,0 +1,23 @@
+<div class="form-container" [@moveInLeft]='state'>
+  <a (click)="goBack()" id="goback">Go back</a>
+
+  <h2>Add Game</h2>
+
+  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+    
+  <form [formGroup]="gForm" (ngSubmit)="addGame(gForm.value)">
+    <div formArrayName="gamePlayers" *ngFor="let player of players | async; let i = index;">
+      <label>
+        <input type= "checkbox" value="{{ player.UserName }}" (change)="onCheckChange($event)" [disabled]="this.temp >= 4 && isChecked(player.UserName)">{{ player.UserName }}
+      </label>
+    </div>
+    <label for="winner-select">Winner</label>
+    <select name="winner-select" formControlName="winner" [(ngModel)]="winner"  required>
+      <option value='' disabled>Choose player</option>
+      <option *ngFor="let player of players | async" placeholder="winner" [disabled]="isChecked(player.UserName)" [value]="player | json">{{ player.UserName }}</option>
+    </select>
+
+
+    <button type="submit" [disabled]='this.temp < 2 || this.winner == undefined' class="basic-btn">Add Game</button>
+  </form>
+</div>
