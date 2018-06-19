@@ -69,6 +69,7 @@ export class GameFormComponent implements OnInit {
   winnerGlobalVC: Observable<Player>;
   globalWins: number;
   winner:any;
+  error:string;
 
   constructor(public af: AngularFireAuth,private router: Router, private afs: AngularFirestore, private route: ActivatedRoute, private fb: FormBuilder) {
     this.winTypes = {};

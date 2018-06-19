@@ -16,6 +16,8 @@ import * as firebase from 'firebase/app';
 export class EmailComponent implements OnInit {
     state: string = '';
     error: any;
+    email:string;
+    password:string;
 
     constructor(public af: AngularFireAuth,private router: Router) {
     this.af.authState.subscribe(auth => { 
