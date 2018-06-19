@@ -1,25 +1,53 @@
-<div class="form-container" [@moveInLeft]='state'>
-  <a routerLink="/members" id="goback">Go back</a>
 
-  <h2>New Room</h2>
+<div class="container animated slideInLeft">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="card col-md-8">
+        <div class="card-body">
+          <!-- Material form register -->
+          <form #formData='ngForm' (ngSubmit)="addRoom()">
+            <p class="h4 text-center py-4">New Room</p>
+            <span class="animated slideInDown" *ngIf="error">{{ error }}</span>
+  
+            <!-- Material input email -->
+            <div class="md-form">
+              <i class="fa fa-file-text prefix grey-text"></i>
+              <input type="text" placeholder="Room Name" [(ngModel)]="roomName" name="roomName" class="form-control" mdbInputDirective required>
+              <label for="materialFormCardEmailEx" class="font-weight-light">Room Name</label>
+            </div>
+  
+            <!-- Material input password -->
+            <div class="md-form">
+              <i class="fa fa-lock prefix grey-text"></i>
+              <input type="password" placeholder="optional" [(ngModel)]="roomPassword" name="roomPassword" class="form-control"
+                mdbInputDirective>
+              <label for="materialFormCardPasswordEx" class="font-weight-light">Room Password</label>
+            </div>
+            
+            <div class="md-form">
+              
+              <p for="winner-select" class="grey-text"><i class="fa fa-gamepad grey-text"></i>  Game Type</p>
+              <select name="winner-select" [(ngModel)]="gameType"  required>
+                <option value='' disabled>Choose game type</option>
+                <option *ngFor="let gameType of games | async" placeholder="game type" [value]="gameType | json">{{ gameType.name }} <span>{{ gameType.minPlayers }}-{{ gameType.maxPlayers }} Players</span></option>
+              </select>
+            </div>
+            <a routerLink="/game-type-form" routerLinkActive="active" class="text-center py-4">Don't see the game you are looking for? <strong>Add a new option here</strong></a>
+  
+            <div class="text-center py-4 mt-3">
+              <button class="btn btn-blue waves-light" type="submit" [disabled]="!formData.valid" mdbWavesEffect>Create Room</button>
+            </div>
+            <div class="text-center mb-3">
+              <a routerLink="/members" id="goback">Go back</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+  </div>
 
-  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
-    
-  <form #formData='ngForm' (ngSubmit)="addRoom()">
-
-    <label for="roomName">Room Name</label>
-    <input type="text" placeholder="Room Name" [(ngModel)]="roomName" name="roomName" class="txt" required>
-    <label for="roomPassword">Room Password</label>
-    <input type="password" placeholder="optional" [(ngModel)]="roomPassword" name="roomPassword" class="txt">
-
-    <label for="winner-select">Game Type</label>
-    <select name="winner-select" [(ngModel)]="gameType"  required>
-      <option value='' disabled>Choose game type</option>
-      <option *ngFor="let gameType of games | async" placeholder="game type" [value]="gameType | json">{{ gameType.name }} <span>{{ gameType.minPlayers }}-{{ gameType.maxPlayers }} Players</span></option>
-    </select>
-    
-    <a routerLink="/game-type-form" routerLinkActive="active" class="alc">Don't see the game you are looking for? <strong>Add a new option here</strong></a>
-
-    <button type="submit" [disabled]="!formData.valid" class="basic-btn">Create Room</button>
-  </form>
-</div>
+  
+      

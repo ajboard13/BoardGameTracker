@@ -1,40 +1,40 @@
 <div class="container animated slideInLeft">
-    <div class="row">
-      <div class="col-md-2">
-      </div>
-      <div class="card col-md-8">
-        <div class="card-body">
-          <!-- Material form register -->
-          <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-            <p class="h4 text-center py-4">Sign in</p>
-            <span class="animated slideInDown" *ngIf="error">{{ error }}</span>
-  
-            <!-- Material input email -->
-            <div class="md-form">
-              <i class="fa fa-envelope prefix grey-text"></i>
-              <input type="email" id="materialFormCardEmailEx"(ngModel)="email" name="email" class="form-control" mdbInputDirective required>
-              <label for="materialFormCardEmailEx" class="font-weight-light">Your email</label>
-            </div>
-  
-            <!-- Material input password -->
-            <div class="md-form">
-              <i class="fa fa-lock prefix grey-text"></i>
-              <input type="password" id="materialFormCardPasswordEx" (ngModel)="password" name="password" class="form-control"
-                mdbInputDirective required>
-              <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
-            </div>
-  
-            <div class="text-center py-4 mt-3">
-              <button class="btn btn-grey waves-light" type="submit" [disabled]="!formData.valid" mdbWavesEffect>Sign in</button>
-            </div>
-            <div class="text-center mb-3">
-              <a routerLink="/login" id="goback">Go back</a>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="col-md-2">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="card col-md-8">
+      <div class="card-body">
+        <!-- Material form register -->
+        <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+          <p class="h4 text-center py-4">Sign in</p>
+          <span class="animated slideInDown" *ngIf="error">{{ error }}</span>
+
+          <!-- Material input email -->
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" id="materialFormCardEmailEx"(ngModel)="email" name="email" class="form-control" mdbInputDirective required>
+            <label for="materialFormCardEmailEx" class="font-weight-light">Your email</label>
+          </div>
+
+          <!-- Material input password -->
+          <div class="md-form">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input type="password" id="materialFormCardPasswordEx" (ngModel)="password" name="password" class="form-control"
+              mdbInputDirective required>
+            <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
+          </div>
+
+          <div class="text-center py-4 mt-3">
+            <button class="btn btn-grey waves-light" type="submit" [disabled]="!formData.valid" mdbWavesEffect>Sign in</button>
+          </div>
+          <div class="text-center mb-3">
+            <a routerLink="/login" id="goback">Go back</a>
+          </div>
+        </form>
       </div>
     </div>
+    <div class="col-md-2">
+    </div>
   </div>
+</div>
     
