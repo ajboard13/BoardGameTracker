@@ -26,7 +26,7 @@ interface Player {
 interface Game {
   date: Date;
   numPlayers: number;
-  players: string[];
+  players: any[];
   winner: string;
 }
 

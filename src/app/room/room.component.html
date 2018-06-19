@@ -19,7 +19,8 @@
       <div class="col">
       </div>
       <div class="col-4 mt-4">
-          <h2 class ="text-center">Welcome to {{ currentRoom.roomName }}!</h2>
+          <h2 class ="text-center">Welcome to {{ currentRoom.roomName }}!</h2><br>
+          <h4 class ="text-center">Game: {{ currentRoom.gameType }}</h4>
       </div>
       <div class="col">
       </div>
@@ -37,7 +38,7 @@
       <div class="col">
       </div>
       <div class="col-md-12">
-        <h3 class="text-center p-4">Players</h3>
+        <h3 class="text-center p-4">Leaderboard</h3>
           <table class="table">
         
             <!--Table head-->
@@ -58,7 +59,7 @@
                     <th scope="row">{{ i+1 }}</th>
                     <td>{{ player.UserName }}</td>
                     <ng-template #popTemplate><ul><li *ngFor="let winType of player.winTypes | keys">{{ winType }}: {{ player.winTypes[winType] }}</li></ul></ng-template>
-                    <td>{{ player.totalWins }} <button class="btn btn-primary waves-light" [mdbPopover]="popTemplate"
+                    <td>{{ player.totalWins }} <button class="btn-sm btn-blue waves-light" [mdbPopover]="popTemplate"
                         placement="right"
                         popoverTitle="Win Breakdown"
                         triggers="focus">Win Breakdown</button></td>
@@ -94,7 +95,11 @@
             <tbody>
                 <tr *ngFor="let game of games | async; let games">
                     <td>{{ game.date  | timestampToDate }}</td>
-                    <td>{{ game.numPlayers }}</td>
+                    <ng-template #popTemplate><ol><li *ngFor="let p of game.players">{{ (p | stringToJson)['UserName'] }}</li></ol></ng-template>
+                    <td>{{ game.numPlayers }} <button class="btn-sm btn-blue waves-light" [mdbPopover]="popTemplate"
+                        placement="right"
+                        popoverTitle="Whomst've played?"
+                        triggers="focus">Whomst've played?</button></td>
                     <td>{{ game.winner }}</td>
                 </tr>
             </tbody>

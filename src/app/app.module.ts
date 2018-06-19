@@ -26,6 +26,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import 'hammerjs';
 import { TimestampToDatePipe } from './timestamp-to-date.pipe';
 import { KeysPipe } from './keys.pipe';
+import { StringToJsonPipe } from './string-to-json.pipe';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBoIS_aIZhjpaBUpU-DGvAZQ17_IsGb5AU',
@@ -50,7 +51,8 @@ export const firebaseConfig = {
     RoomFormComponent,
     RoomSignInComponent,
     TimestampToDatePipe,
-    KeysPipe
+    KeysPipe,
+    StringToJsonPipe
   ],
   imports: [
     BrowserModule,
