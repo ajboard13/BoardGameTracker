@@ -1,45 +1,118 @@
-<ng-container *ngIf="currentRoom | async; let currentRoom; else nocontent">
-  <div class="form-container" id="toolbar">
-    <header [@fallIn]="state">
-      <button (click)="logout()" class="basic-btn">Logout</button>
-      <button (click)="goHome()" class="basic-btn">Home</button>
-    </header>
-    <div id="page" [@moveInLeft]="state">
-      <h2>Welcome to {{ currentRoom.roomName }}!</h2>
-      <button id="log-game-button" (click)="createGame()">Log a game</button>
-      <h3>Players:</h3>
-      <ol>
-        <li *ngFor="let player of players | async; let players">
-          {{ player.UserName }}
-          {{ player.acctId }}
-          {{ player.numOfTwoPlayerWins }}
-          {{ player.numOfThreePlayerWins }}
-          {{ player.numOfFourPlayerWins }}
-          {{ player.totalWins }}
-          {{ player.totalVictoryPoints }}
-        </li>
-      </ol>
-      <h3>Games:</h3>
-      <ol>
-        <li *ngFor="let game of games | async; let games">
-          {{ game.winner }}
-        </li>
-      </ol>
+
+
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark blue scrolling-navbar ie-nav" [containerInside]="false">
+  <links>
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item waves-light" mdbWavesEffect>
+              <a class="nav-link" (click)="logout()">Logout <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item waves-light ml-3" mdbWavesEffect>
+              <a class="nav-link" (click)="goHome()">Home <span class="sr-only">(current)</span></a>
+          </li>
+      </ul>
+  </links>
+</mdb-navbar>
+
+<main *ngIf="currentRoom | async; let currentRoom; else nocontent">
+  <div class="container animated slideInLeft">
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col-4 mt-4">
+          <h2 class ="text-center">Welcome to {{ currentRoom.roomName }}!</h2>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+          <button type="button" class="btn btn-blue btn-lg btn-block waves-light mb-4 mt-4" (click)="createGame()" mdbWavesEffect>Log a game</button>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col-md-12">
+        <h3 class="text-center p-4">Players</h3>
+          <table class="table">
+        
+            <!--Table head-->
+            <thead class="blue-grey lighten-4">
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Total Wins</th>
+                    <th>Games Played</th>
+                    <th>Win %</th>
+                </tr>
+            </thead>
+            <!--Table head-->
+        
+            <!--Table body-->
+            <tbody>
+                <tr *ngFor="let player of players | async; let players; let i = index">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{ player.UserName }}</td>
+                    <td>{{ player.totalWins }}</td>
+                    <td>{{ player.gamesPlayed }}</td>
+                    <td>{{ player.winPercent }}%</td>
+                </tr>
+            </tbody>
+            <!--Table body-->
+        </table>
+        <!--Table-->
+      </div>
+      <div class="col">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col-md-12">
+          <h3 class="text-center p-4">Games</h3>
+          <table class="table">
+        
+            <!--Table head-->
+            <thead class="blue">
+                <tr>
+                    <th>Date</th>
+                    <th>Total Players</th>
+                    <th>Winner</th>
+                </tr>
+            </thead>
+            <!--Table head-->
+        
+            <!--Table body-->
+            <tbody>
+                <tr *ngFor="let game of games | async; let games">
+                    <td>{{ game.date  | timestampToDate }}</td>
+                    <td>{{ game.numPlayers }}</td>
+                    <td>{{ game.winner }}</td>
+                </tr>
+            </tbody>
+            <!--Table body-->
+        </table>
+      </div>
+      <div class="col">
+      </div>
     </div>
   </div>
-</ng-container>
+</main>
 
 <ng-template #nocontent>
-    <div class="form-container" id="toolbar">
-      <header [@fallIn]="state">
-        <button (click)="logout()" class="basic-btn">Logout</button>
-        <button (click)="goHome()" class="basic-btn">Home</button>
-      </header>
-      <div id="page" [@moveInLeft]="state">
-        <h2><img src="{{ photoUrl }}"/>Hey {{ name }}!</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col">
       </div>
-  
+      <div class="col-md-8">
         <h3>Looks like we couldn't load this room!</h3>
-      
+      </div>
+      <div class="col">
+      </div>
     </div>
+  </div>
 </ng-template>

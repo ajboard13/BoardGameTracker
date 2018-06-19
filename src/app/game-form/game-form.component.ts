@@ -24,6 +24,7 @@ interface Player {
   totalWins:number;
   totalVictoryPoints: number;
   winPercent: number;
+  gamesPlayed: number;
 }
 class Game {
   date: Date;
@@ -52,7 +53,7 @@ export class GameFormComponent implements OnInit {
   numPlayers: number;
   playersCol: AngularFirestoreCollection<Player>;
   players: Observable<Player[]>;
-  gamePlayers: string[];
+  gamePlayers: any[];
   roomDoc: AngularFirestoreDocument<Room>;
   currentRoom: Observable<Room>;
   roomId: string;
@@ -88,6 +89,7 @@ export class GameFormComponent implements OnInit {
     this.game.winner = JSON.parse(this.winner).UserName;
     console.log("ajb" + this.game.winner);
     this.updateWinnerStats();
+    this.updateAllStats();
     try {
       this.afs.collection('Rooms/' + this.roomId+'/Games/').add({'date':this.game.date, 'players':this.game.players, 'numPlayers':this.game.numPlayers, 'winner':this.game.winner});
     } catch (e){
@@ -117,8 +119,25 @@ export class GameFormComponent implements OnInit {
       this.globalWins = playerW.totalWins;
       this.winnerGLobal.update({'totalWins': this.globalWins +1});
     });
-    this.afs.doc('Players/'+winman.acctId).update({'totalWins': this.globalWins + 1});
     this.afs.doc('Rooms/'+this.roomId+'/Players/'+winman.acctId).update({'totalWins':winman.totalWins+1});
+  }
+
+  async updateAllStats() {
+    await Promise.all(this.gamePlayers.map(async (p:any) => {
+      const pDocumentRef = this.afs.doc(`Players/`+JSON.parse(p).acctId).ref;
+      await this.afs.firestore.runTransaction(transaction => {
+        return transaction.get(pDocumentRef).then(memberDoc => {
+          transaction.update(pDocumentRef, {'gamesPlayed':memberDoc.get('gamesPlayed')+1});//update projects on each member
+        });
+      });
+      const gDocumentRef = this.afs.doc(`Rooms/`+this.roomId+'/Players/'+JSON.parse(p).acctId).ref;
+      await this.afs.firestore.runTransaction(transaction => {
+        return transaction.get(gDocumentRef).then(memberDoc => {
+          transaction.update(gDocumentRef, {'gamesPlayed':memberDoc.get('gamesPlayed')+1});//update projects on each member
+        });
+      });
+    }));
+    
   }
 
   goBack() {
@@ -175,11 +194,17 @@ export class GameFormComponent implements OnInit {
   }
 
   isChecked(name) {
-    if(this.gamePlayers.indexOf(name) != -1){
-      return false;
-    } else {
-      return true;
+    for(let player of this.gamePlayers){
+      if(JSON.parse(player).UserName == name){
+        return false;
+      }
     }
+    return true;
+    // if(this.gamePlayers.indexOf(name) != -1){
+    //   return false;
+    // } else {
+    //   return true;
+    // }
   }
 
 }

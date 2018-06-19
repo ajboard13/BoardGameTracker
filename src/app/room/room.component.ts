@@ -1,3 +1,4 @@
+import { Timestamp } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
@@ -68,6 +69,8 @@ export class RoomComponent implements OnInit {
 
   constructor(public af: AngularFireAuth,private router: Router, private afs: AngularFirestore, private route: ActivatedRoute) {
   }
+
+
   getRoomInfo() {
     this.roomDoc = this.afs.doc('Rooms/' + this.roomId);
     this.currentRoom = this.roomDoc.valueChanges();
@@ -104,12 +107,17 @@ export class RoomComponent implements OnInit {
   }
 
   getPlayersInfo() {
-    this.playersCol = this.afs.collection('Rooms/'+this.roomId+'/Players/');
+    this.playersCol = this.afs.collection('Rooms/'+this.roomId+'/Players/', ref => {
+      return ref.orderBy('totalWins', 'desc');
+    });
+    this.playersCol.ref.orderBy('date');
     this.players = this.playersCol.valueChanges();
   }
 
   getGamesInfo() {
-    this.gamesCol = this.afs.collection('Rooms/'+this.roomId+'/Games/');
+    this.gamesCol = this.afs.collection('Rooms/'+this.roomId+'/Games/', ref => {
+      return ref.orderBy('date', 'desc');
+    });
     this.games = this.gamesCol.valueChanges();
   }
 
@@ -130,7 +138,7 @@ export class RoomComponent implements OnInit {
     this.afs.doc('Rooms/'+this.roomId+'/Players/'+this.acctId).ref.get().then((documentSnapshot) => {
       if(documentSnapshot.exists !== true){
         this.isInRoom = false;
-        this.afs.collection('Rooms/'+this.roomId + '/Players').doc(this.acctId).set({'UserName': this.player.UserName, 'isAdmin':false, 'acctId': this.acctId, 'totalWins':0, 'winPercent': 0, 'winTypes':this.winTypes});
+        this.afs.collection('Rooms/'+this.roomId + '/Players').doc(this.acctId).set({'UserName': this.player.UserName, 'isAdmin':false, 'acctId': this.acctId, 'totalWins':0, 'winPercent': 0, 'winTypes':this.winTypes, 'gamesPlayed': 0});
         this.afs.doc('Rooms/'+this.roomId).update({'playerCount': this.playerCount+1});
       } else {
         this.isInRoom = true;

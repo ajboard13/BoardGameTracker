@@ -24,6 +24,7 @@ import { RoomSignInComponent } from './room-sign-in/room-sign-in.component';
 import { MaterialModule } from './material';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import 'hammerjs';
+import { TimestampToDatePipe } from './timestamp-to-date.pipe';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBoIS_aIZhjpaBUpU-DGvAZQ17_IsGb5AU',
@@ -46,7 +47,8 @@ export const firebaseConfig = {
     GameFormComponent,
     GameTypeFormComponent,
     RoomFormComponent,
-    RoomSignInComponent
+    RoomSignInComponent,
+    TimestampToDatePipe
   ],
   imports: [
     BrowserModule,

@@ -15,8 +15,8 @@
       <div class="col">
       </div>
       <div class="col-4 mt-4">
-          <div class="chip">
-            <img src="{{ photoUrl }}" class="img-thumbnail"/><strong>  Hey {{ currentPlayer.UserName }}!</strong> 
+          <div class="card">
+            <img src="{{ photoUrl }}" class="img-thumbnail"/><strong class="text-center">  Hey {{ currentPlayer.UserName }}!</strong> 
           </div>
       </div>
       <div class="col">
@@ -26,7 +26,7 @@
       <div class="col">
       </div>
       <div class="col">
-        <button mat-raised-button color='accent' id="add-room-button" routerLink="/room-form">Create new room</button>
+        <button type="button" class="btn btn-pink btn-lg btn-block waves-light mb-4 mt-4" routerLink="/room-form" mdbWavesEffect>Create Room</button>
       </div>
       <div class="col">
       </div>
