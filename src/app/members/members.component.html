@@ -14,9 +14,9 @@
     <div class="row">
       <div class="col">
       </div>
-      <div class="col-6">
+      <div class="col-4 mt-4">
           <div class="chip">
-            <img src="{{ photoUrl }}"/><strong>  Hey {{ currentPlayer.UserName }}!</strong> 
+            <img src="{{ photoUrl }}" class="img-thumbnail"/><strong>  Hey {{ currentPlayer.UserName }}!</strong> 
           </div>
       </div>
       <div class="col">
@@ -43,7 +43,8 @@
         <div class="card-body">
           <!--Title-->
           <h4 class="card-title">{{ room.data.roomName }}</h4>
-          <span>Players: {{ room.data.playerCount }}</span>
+          <span>Players: {{ room.data.playerCount }}</span><br>
+          <span>Game: {{ room.data.gameType }}</span>
           <hr>
           <!--Text-->
           <a *ngIf="!room.data.isLocked; else lockedRoom" class="btn btn-primary waves-light" (click)="goToRoom(room.id)" mdbWavesEffect>Join!</a>

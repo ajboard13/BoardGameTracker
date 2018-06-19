@@ -1,22 +1,32 @@
+<div class="container animated slideInLeft" *ngIf="room | async; let room; else nocontent">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="card col-md-8">
+      <div class="card-body">
+        <p class="h4 text-center py-4">Sign in</p>
+        <span class="animated slideInDown" *ngIf="error">{{ error }}</span>
+        <form #formData='ngForm' (ngSubmit)="logInToRoom()">
+            <div class="md-form">
+              <i class="fa fa-lock prefix grey-text"></i>
+              <input type="text" placeholder="Room Password" [(ngModel)]="roomPass" name="roomPass" class="form-control"
+                mdbInputDirective required>
+              <label for="materialFormCardPasswordEx" class="font-weight-light">Room password</label>
+            </div>
 
-<ng-container *ngIf="room | async; let room; else nocontent">
-  <div class="form-container">
-    <a routerLink="/members" id="goback">Go back</a>
-
-    <h2>{{ room.roomName }}</h2>
-
-    <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
-      
-    <form #formData='ngForm' (ngSubmit)="logInToRoom()">
-
-      <input type="text" placeholder="Room Password" [(ngModel)]="roomPass" name="roomPass" class="txt" required>
-
-
-      <button type="submit" [disabled]="!formData.valid" class="basic-btn">Log into {{ room.roomName }}</button>
-    </form>
+            <div class="text-center py-4 mt-3">
+              <button class="btn btn-blue waves-light" type="submit" [disabled]="!formData.valid" mdbWavesEffect>Log into {{ room.roomName }}</button>
+            </div>
+        </form>
+        <div class="text-center mb-3">
+            <a routerLink="/members" id="goback">Go back</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+    </div>
   </div>
-</ng-container>
-  
+</div>
 
 <ng-template #nocontent>
     <div class="form-container" id="toolbar">

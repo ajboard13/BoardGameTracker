@@ -67,6 +67,7 @@ export class GameFormComponent implements OnInit {
   winnerGLobal: AngularFirestoreDocument<Player>;
   winnerGlobalVC: Observable<Player>;
   globalWins: number;
+  winner:any;
 
   constructor(public af: AngularFireAuth,private router: Router, private afs: AngularFirestore, private route: ActivatedRoute, private fb: FormBuilder) {
     this.winTypes = {};
@@ -83,9 +84,10 @@ export class GameFormComponent implements OnInit {
     this.game.players = this.gamePlayers;
     this.game.date = new Date();
     this.game.numPlayers = this.gamePlayers.length;
-    var winner = JSON.parse(game.winner);
-    this.game.winner = winner.UserName;
-    this.updateWinnerStats(winner);
+    console.log("ajb" + this.winner);
+    this.game.winner = JSON.parse(this.winner).UserName;
+    console.log("ajb" + this.game.winner);
+    this.updateWinnerStats();
     try {
       this.afs.collection('Rooms/' + this.roomId+'/Games/').add({'date':this.game.date, 'players':this.game.players, 'numPlayers':this.game.numPlayers, 'winner':this.game.winner});
     } catch (e){
@@ -94,28 +96,29 @@ export class GameFormComponent implements OnInit {
     this.goBack();
   }
 
-  updateWinnerStats(winner) {
+  updateWinnerStats() {
+    var winman = JSON.parse(this.winner);
     this.currentRoom.subscribe(room => {
       this.minPlayers = room.minPlayers;
       this.maxPlayers = room.maxPlayers;
       for(var i = this.minPlayers; i <= this.maxPlayers; i++){
         if(this.gamePlayers.length == i){
-          this.winTypes[i+'PlayerWins'] = winner.winTypes[i+'PlayerWins'] +1;
+          this.winTypes[i+'PlayerWins'] = winman.winTypes[i+'PlayerWins'] +1;
         } else {
-          this.winTypes[i+'PlayerWins'] = winner.winTypes[i+'PlayerWins'];
+          this.winTypes[i+'PlayerWins'] = winman.winTypes[i+'PlayerWins'];
         }
       }
-      this.afs.doc('Rooms/'+this.roomId+'/Players/'+winner.acctId).update({'winTypes':this.winTypes});
+      this.afs.doc('Rooms/'+this.roomId+'/Players/'+winman.acctId).update({'winTypes':this.winTypes});
     });
     
-    this.winnerGLobal = this.afs.doc('Players/'+winner.acctId);
+    this.winnerGLobal = this.afs.doc('Players/'+winman.acctId);
     this.winnerGlobalVC = this.winnerGLobal.valueChanges();
     this.winnerGlobalVC.take(1).subscribe(playerW => {
       this.globalWins = playerW.totalWins;
       this.winnerGLobal.update({'totalWins': this.globalWins +1});
     });
-    this.afs.doc('Players/'+winner.acctId).update({'totalWins': this.globalWins + 1});
-    this.afs.doc('Rooms/'+this.roomId+'/Players/'+winner.acctId).update({'totalWins':winner.totalWins+1});
+    this.afs.doc('Players/'+winman.acctId).update({'totalWins': this.globalWins + 1});
+    this.afs.doc('Rooms/'+this.roomId+'/Players/'+winman.acctId).update({'totalWins':winman.totalWins+1});
   }
 
   goBack() {

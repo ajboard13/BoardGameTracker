@@ -1,27 +1,3 @@
-<!-- <div class="form-container" [@moveInLeft]='state'>
-  <a (click)="goBack()" id="goback">Go back</a>
-
-  <h2>Add Game</h2>
-
-  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
-    
-  <form [formGroup]="gForm" (ngSubmit)="addGame(gForm.value)">
-    <div formArrayName="gamePlayers" *ngFor="let player of players | async; let i = index;">
-      <label>
-        <input type= "checkbox" value="{{ player.UserName }}" (change)="onCheckChange($event)" [disabled]="this.temp >= 4 && isChecked(player.UserName)">{{ player.UserName }}
-      </label>
-    </div>
-    <!-- <label for="winner-select">Winner</label>
-    <select name="winner-select" formControlName="winner" [(ngModel)]="winner"  required>
-      <option value='' disabled>Choose player</option>
-      <option *ngFor="let player of players | async" placeholder="winner" [disabled]="isChecked(player.UserName)" [value]="player | json">{{ player.UserName }}</option>
-    </select> -->
-
-
-    <!-- <button type="submit" [disabled]='this.temp < 2 || this.winner == undefined' class="basic-btn">Add Game</button>
-  </form>
-</div> --> -->
-
 
 <div class="container animated slideInLeft">
     <div class="row">
@@ -33,22 +9,6 @@
           <form #formData='ngForm' (ngSubmit)="addGame(gForm.value)">
             <p class="h4 text-center py-4">Add Game</p>
             <span class="animated slideInDown" *ngIf="error">{{ error }}</span>
-  
-            <!-- Material input email -->
-            <!-- <div class="md-form">
-              <i class="fa fa-file-text prefix grey-text"></i>
-              <input type="text" placeholder="Game Name" [(ngModel)]="name" name="name" class="form-control" mdbInputDirective required>
-              <label for="materialFormCardEmailEx" class="font-weight-light">Game Name</label>
-            </div> -->
-  
-
-            <!-- Material input password -->
-            <!-- <div class="md-form">
-              <i class="fa fa-sort-up prefix grey-text"></i>
-              <input type="number" placeholder="max" [(ngModel)]="maxPlayers" name="maxPlayers" class="form-control"
-                mdbInputDirective required>
-              <label for="materialFormCardPasswordEx" class="font-weight-light">Maximum Players</label>
-            </div> -->
             <div class="container">
               <div class="row">
                 <div class="col-md-2">
