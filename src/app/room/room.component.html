@@ -1,6 +1,7 @@
 
 
 <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark blue scrolling-navbar ie-nav" [containerInside]="false">
+    <logo><a class="navbar-brand" href="/members">Board Game Tracker</a></logo>
   <links>
       <ul class="navbar-nav mr-auto">
           <li class="nav-item waves-light" mdbWavesEffect>
@@ -59,7 +60,7 @@
                     <th scope="row">{{ i+1 }}</th>
                     <td>{{ player.UserName }}</td>
                     <ng-template #popTemplate><ul><li *ngFor="let winType of player.winTypes | keys">{{ winType }}: {{ player.winTypes[winType] }}</li></ul></ng-template>
-                    <td>{{ player.totalWins }} <button class="btn-sm btn-blue waves-light" [mdbPopover]="popTemplate"
+                    <td>{{ player.totalWins }} <button type = "button" class="btn-sm btn-blue waves-light ml-4" [mdbPopover]="popTemplate"
                         placement="right"
                         popoverTitle="Win Breakdown"
                         triggers="focus">Win Breakdown</button></td>
@@ -96,7 +97,7 @@
                 <tr *ngFor="let game of games | async; let games">
                     <td>{{ game.date  | timestampToDate }}</td>
                     <ng-template #popTemplate><ol><li *ngFor="let p of game.players">{{ (p | stringToJson)['UserName'] }}</li></ol></ng-template>
-                    <td>{{ game.numPlayers }} <button class="btn-sm btn-blue waves-light" [mdbPopover]="popTemplate"
+                    <td>{{ game.numPlayers }} <button class="btn-sm btn-blue waves-light ml-4" [mdbPopover]="popTemplate"
                         placement="right"
                         popoverTitle="Whomst've played?"
                         triggers="focus">Whomst've played?</button></td>

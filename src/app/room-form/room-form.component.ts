@@ -101,7 +101,7 @@ export class RoomFormComponent implements OnInit {
       this.isLocked = true;
     }
     this.afs.collection('Rooms').doc(this.roomName).set({'roomName': this.roomName, 'roomPassword': this.roomPassword, 'isLocked':this.isLocked, 'gameType': JSON.parse(this.gameType).name, 'playerCount': 1, 'minPlayers': JSON.parse(this.gameType).minPlayers, 'maxPlayers': JSON.parse(this.gameType).maxPlayers, 'admin':this.acctId});
-    this.afs.collection('Rooms/'+this.roomName+'/Players').doc(this.acctId).set({'UserName': this.player.UserName,'acctId':this.player.acctId, 'isAdmin': true, 'totalWins': 0, 'winPercent':0, 'winTypes': this.winTypes})
+    this.afs.collection('Rooms/'+this.roomName+'/Players').doc(this.acctId).set({'UserName': this.player.UserName,'acctId':this.player.acctId, 'isAdmin': true, 'totalWins': 0, 'winPercent':0, 'winTypes': this.winTypes, 'gamesPlayed': 0})
   }
 
   goBack(){
