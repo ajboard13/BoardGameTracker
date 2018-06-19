@@ -48,6 +48,8 @@ export class MembersComponent implements OnInit {
   roomsCollection: AngularFirestoreCollection<Room>;
   rooms: any;
 
+  roomDoc: AngularFirestoreDocument<Room>;
+
   player: AngularFirestoreDocument<Player>;
   currentPlayer: Observable<Player>;
 
@@ -90,6 +92,10 @@ export class MembersComponent implements OnInit {
 
   goToLockedRoom(roomId){
     this.router.navigate(['/room-sign-in', {'roomId':roomId}]);
+  }
+  deleteRoom(roomId) {
+    this.roomDoc = this.afs.doc('Rooms/'+roomId);
+    this.roomDoc.delete();
   }
 
   logout() {

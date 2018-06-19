@@ -50,6 +50,7 @@
           <ng-template #lockedRoom >
             <a class="btn btn-primary waves-light" (click)="goToLockedRoom(room.id)" mdbWavesEffect>Join! (locked)</a>
           </ng-template>
+          <a *ngIf="room.data.admin == currentPlayer.acctId;" class="btn btn-danger waves-light" (click)="deleteRoom(room.id)" mdbWavesEffect>Delete Room</a>
         </div>
       </div>
     </div>
