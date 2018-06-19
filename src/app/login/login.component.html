@@ -1,13 +1,29 @@
-<mat-card class="form-container">
-  <img src="./assets/images/lock.svg" id="lock">
 
-  <span class="error" *ngIf="error">{{ error }}</span>
 
-  <button mat-raised-button color="primary" (click)="loginFb()" id="fb">Login With Facebook</button><br>
-  <button mat-raised-button color="primary" (click)="loginGoogle()" id="google">Login With Google</button>
-  <button mat-raised-button color="primary" routerLink="/login-email" id="email">Email</button>
+<div class="container animated slideInLeft">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <!-- Card -->
+    <div class="card col-md-8">
+        <img class="img-fluid" src="./assets/images/lock.svg" id="lock" alt="Card image cap">
+      <!-- Card body -->
+      <div class="card-body">
+          <p class="h4 text-center py-2">Log in</p>
+          <button type="button" class="btn btn-blue btn-lg btn-block waves-light mb-4" (click)="loginFb()" mdbWavesEffect>Login With Facebook</button>
+          <button class="btn btn-red btn-lg btn-block waves-light mb-4"  (click)="loginGoogle()" id="google">Login With Google</button>
+          <button class="btn btn-grey btn-lg btn-block waves-light mb-4" routerLink="/login-email" id="email">Email</button>
+          <button class="btn btn-default btn-lg btn-block waves-light mb-4" routerLink="/signup" routerLinkActive="active">
+            No account? <strong>Create one here</strong>
+          </button>
 
-  <button mat-button color="primary" routerLink="/signup" routerLinkActive="active" class="alc">
-    No account? <strong>Create one here</strong>
-  </button>
-</mat-card>
+      </div>
+      <!-- Card body -->
+
+    </div>
+    <!-- Card -->
+    <div class="col-md-2">
+    </div>
+
+  </div>
+</div>
