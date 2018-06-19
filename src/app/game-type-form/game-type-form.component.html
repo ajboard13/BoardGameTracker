@@ -1,4 +1,4 @@
-<div class="form-container" [@moveInLeft]='state'>
+<!-- <div class="form-container" [@moveInLeft]='state'>
   <a routerLink="/members" id="goback">Go back</a>
 
   <h2>New Game</h2>
@@ -17,4 +17,56 @@
 
     <button type="submit" [disabled]="!formData.valid" class="basic-btn">Add New Game</button>
   </form>
-</div>
+</div> -->
+
+<div class="container animated slideInLeft">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="card col-md-8">
+        <div class="card-body">
+          <!-- Material form register -->
+          <form #formData='ngForm' (ngSubmit)="addGame()">
+            <p class="h4 text-center py-4">New Game</p>
+            <span class="animated slideInDown" *ngIf="error">{{ error }}</span>
+  
+            <!-- Material input email -->
+            <div class="md-form">
+              <i class="fa fa-file-text prefix grey-text"></i>
+              <input type="text" placeholder="Game Name" [(ngModel)]="name" name="name" class="form-control" mdbInputDirective required>
+              <label for="materialFormCardEmailEx" class="font-weight-light">Game Name</label>
+            </div>
+  
+
+            <!-- Material input password -->
+            <div class="md-form">
+              <i class="fa fa-sort-up prefix grey-text"></i>
+              <input type="number" placeholder="max" [(ngModel)]="maxPlayers" name="maxPlayers" class="form-control"
+                mdbInputDirective required>
+              <label for="materialFormCardPasswordEx" class="font-weight-light">Maximum Players</label>
+            </div>
+
+            <!-- Material input password -->
+            <div class="md-form">
+              <i class="fa fa-sort-down prefix grey-text"></i>
+              <input type="number" placeholder="min" min='2' [(ngModel)]="minPlayers" name="minPlayers" class="form-control"
+                mdbInputDirective required>
+              <label for="materialFormCardPasswordEx" class="font-weight-light">Minimum Players</label>
+            </div>
+
+            <div class="text-center py-4 mt-3">
+              <button class="btn btn-blue waves-light" type="submit" [disabled]="!formData.valid" mdbWavesEffect>Add New Game</button>
+            </div>
+            <div class="text-center mb-3">
+              <a routerLink="/members" id="goback">Go back</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+  </div>
+
+  
+      
