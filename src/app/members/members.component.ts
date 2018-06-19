@@ -34,11 +34,9 @@ interface Room {
 }
 
 @Component({
-  selector: 'app-other',
+  selector: 'app-members',
   templateUrl: './members.component.html',
-  styleUrls: ['./members.component.scss'],
-  animations: [moveIn(), fallIn(), moveInLeft()],
-  host: {'[@moveIn]': ''}
+  styleUrls: ['./members.component.scss']
 })
 
 export class MembersComponent implements OnInit {

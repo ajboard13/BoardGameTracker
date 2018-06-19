@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body { 
+    padding-top: 100px; 
+}
+
+#add-room-button {
+    margin:48px;
+}
+
+.card {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+:host(selector){
+    position: unset !important;
+}

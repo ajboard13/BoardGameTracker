@@ -14,6 +14,7 @@ import { RoomFormComponent } from './room-form/room-form.component';
 import { GameTypeFormComponent } from './game-type-form/game-type-form.component';
 import { RoomSignInComponent } from './room-sign-in/room-sign-in.component';
 
+
 export const router: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },

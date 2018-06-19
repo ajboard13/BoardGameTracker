@@ -1,11 +1,13 @@
-<div class="form-container">
-  <img src="assets/images/lock.svg" id="lock">
+<mat-card class="form-container">
+  <img src="./assets/images/lock.svg" id="lock">
 
-    <span class="error" *ngIf="error">{{ error }}</span>
+  <span class="error" *ngIf="error">{{ error }}</span>
 
-  <button (click)="loginFb()" id="fb">Login With Facebook</button><br>
-  <button (click)="loginGoogle()" id="google">Login With Google</button>
-  <button routerLink="/login-email" id="email">Email</button>
+  <button mat-raised-button color="primary" (click)="loginFb()" id="fb">Login With Facebook</button><br>
+  <button mat-raised-button color="primary" (click)="loginGoogle()" id="google">Login With Google</button>
+  <button mat-raised-button color="primary" routerLink="/login-email" id="email">Email</button>
 
-  <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
-</div>
+  <button mat-button color="primary" routerLink="/signup" routerLinkActive="active" class="alc">
+    No account? <strong>Create one here</strong>
+  </button>
+</mat-card>

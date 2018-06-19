@@ -1,39 +1,62 @@
 
-<ng-container *ngIf="currentPlayer | async; let currentPlayer; else nocontent">
-  <div class="form-container" id="toolbar">
-    <header [@fallIn]="state">
-      <button (click)="logout()" class="basic-btn">Logout</button>
-    </header>
-    
-    <div class="content">
-      <div id="page" infinite-scroll [@moveInLeft]="state">
-        <h2><img src="{{ photoUrl }}"/>Hey {{ currentPlayer.UserName }}!</h2>
-        <button id="add-room-button" routerLink="/room-form">Create new room</button>
-        <ul>
-          <li *ngFor="let room of rooms | async as rooms">
-            <ng-container *ngIf="!room.data.isLocked; else lockedRoom">
-              <h3>{{ room.data.roomName }}   <span>Players: {{ room.data.playerCount }}</span>   <button (click)="goToRoom(room.id)" class="join-room-button">Join!</button></h3>
-            </ng-container>
-            <ng-template #lockedRoom>
-              <h3>{{ room.data.roomName }}   <span>Players: {{ room.data.playerCount }}</span>   <button (click)="goToLockedRoom(room.id)" class="join-room-button">Join! (locked)</button></h3>
-            </ng-template>
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark blue scrolling-navbar ie-nav" [containerInside]="false">
+  <links>
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item active waves-light" mdbWavesEffect>
+              <a class="nav-link" (click)="logout()">Logout <span class="sr-only">(current)</span></a>
           </li>
-        </ul>
+      </ul>
+  </links>
+</mdb-navbar>
+
+<main *ngIf="currentPlayer | async; let currentPlayer; else nocontent">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col-6">
+          <div class="chip">
+            <img src="{{ photoUrl }}"/><strong>  Hey {{ currentPlayer.UserName }}!</strong> 
+          </div>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+        <button mat-raised-button color='accent' id="add-room-button" routerLink="/room-form">Create new room</button>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+    <div class="row">
+      <div class="card col-md-12" *ngFor="let room of rooms | async as rooms">
+        <!--Card image-->
+        <div class="view hm-white-slight waves-light" mdbWavesEffect>
+          <a>
+            <div class="mask"></div>
+          </a>
+        </div>
+        <!--Card content-->
+        <div class="card-body">
+          <!--Title-->
+          <h4 class="card-title">{{ room.data.roomName }}</h4>
+          <span>Players: {{ room.data.playerCount }}</span>
+          <hr>
+          <!--Text-->
+          <a *ngIf="!room.data.isLocked; else lockedRoom" class="btn btn-primary waves-light" (click)="goToRoom(room.id)" mdbWavesEffect>Join!</a>
+          <ng-template #lockedRoom >
+            <a class="btn btn-primary waves-light" (click)="goToLockedRoom(room.id)" mdbWavesEffect>Join! (locked)</a>
+          </ng-template>
+        </div>
       </div>
     </div>
   </div>
-</ng-container>
 
-<ng-template #nocontent>
-    <div class="form-container" id="toolbar">
-      <header [@fallIn]="state">
-        <button (click)="logout()" class="basic-btn">Logout</button>
-      </header>
-      <div id="page" [@moveInLeft]="state">
-        <h2><img src="{{ photoUrl }}"/>Hey {{ name }}!</h2>
-      </div>
-  
-        <h3>Looks like you haven't made a username yet! click <a routerLink="/registration" routerLinkActive="active" class="alc">here</a>.</h3>
-      
-    </div>
-</ng-template>
+  <ng-template #nocontent>
+    <h2><img src="{{ photoUrl }}"/>Hey {{ name }}!</h2>
+    <h3>Looks like you haven't made a username yet! click <a routerLink="/registration" routerLinkActive="active" class="alc">here</a>.</h3>
+  </ng-template>
+</main>
