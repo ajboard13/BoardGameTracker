@@ -85,9 +85,7 @@ export class GameFormComponent implements OnInit {
     this.game.players = this.gamePlayers;
     this.game.date = new Date();
     this.game.numPlayers = this.gamePlayers.length;
-    console.log("ajb" + this.winner);
     this.game.winner = JSON.parse(this.winner).UserName;
-    console.log("ajb" + this.game.winner);
     this.updateWinnerStats();
     this.updateAllStats();
     try {
@@ -200,11 +198,6 @@ export class GameFormComponent implements OnInit {
       }
     }
     return true;
-    // if(this.gamePlayers.indexOf(name) != -1){
-    //   return false;
-    // } else {
-    //   return true;
-    // }
   }
 
 }

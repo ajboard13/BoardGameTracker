@@ -57,9 +57,13 @@
                 <tr *ngFor="let player of players | async; let players; let i = index">
                     <th scope="row">{{ i+1 }}</th>
                     <td>{{ player.UserName }}</td>
-                    <td>{{ player.totalWins }}</td>
+                    <ng-template #popTemplate><ul><li *ngFor="let winType of player.winTypes | keys">{{ winType }}: {{ player.winTypes[winType] }}</li></ul></ng-template>
+                    <td>{{ player.totalWins }} <button class="btn btn-primary waves-light" [mdbPopover]="popTemplate"
+                        placement="right"
+                        popoverTitle="Win Breakdown"
+                        triggers="focus">Win Breakdown</button></td>
                     <td>{{ player.gamesPlayed }}</td>
-                    <td>{{ player.winPercent }}%</td>
+                    <td>{{ (player.totalWins/player.gamesPlayed) | percent }}</td>
                 </tr>
             </tbody>
             <!--Table body-->

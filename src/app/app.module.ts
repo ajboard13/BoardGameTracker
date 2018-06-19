@@ -25,6 +25,7 @@ import { MaterialModule } from './material';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import 'hammerjs';
 import { TimestampToDatePipe } from './timestamp-to-date.pipe';
+import { KeysPipe } from './keys.pipe';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBoIS_aIZhjpaBUpU-DGvAZQ17_IsGb5AU',
@@ -48,7 +49,8 @@ export const firebaseConfig = {
     GameTypeFormComponent,
     RoomFormComponent,
     RoomSignInComponent,
-    TimestampToDatePipe
+    TimestampToDatePipe,
+    KeysPipe
   ],
   imports: [
     BrowserModule,

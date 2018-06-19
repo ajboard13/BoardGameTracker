@@ -18,6 +18,9 @@ interface Player {
   numOfFourPlayerWins: number;
   totalVictoryPoints: number;
   winPercent: number;
+  totalWins:number;
+  gamesPlayed:number;
+  winTypes: any[];
 }
 
 interface Game {
