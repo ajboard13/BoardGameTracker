@@ -8,9 +8,7 @@ import * as firebase from 'firebase/app';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
-  animations: [moveIn(), fallIn()],
-  host: {'[@moveIn]': ''}
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
 
@@ -18,7 +16,6 @@ export class SignupComponent implements OnInit {
   error: any;
 
   constructor(public af: AngularFireAuth,private router: Router) {
-
   }
 
   onSubmit(formData) {

@@ -1,4 +1,4 @@
-<div class="form-container">
+<!-- <div class="form-container">
   <a routerLink="/login" id="goback">Go back</a>
 
   <h2>Join now</h2>
@@ -13,4 +13,44 @@
 
     <button type="submit" [disabled]="!formData.valid" class="basic-btn">Create my account</button>
   </form>
+</div> -->
+
+<div class="container animated slideInLeft">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="card col-md-8">
+      <div class="card-body">
+        <!-- Material form register -->
+        <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+          <p class="h4 text-center py-4">Sign up</p>
+
+          <!-- Material input email -->
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" id="materialFormCardEmailEx"(ngModel)="email" name="email" class="form-control" mdbInputDirective>
+            <label for="materialFormCardEmailEx" class="font-weight-light">Your email</label>
+          </div>
+
+          <!-- Material input password -->
+          <div class="md-form">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input type="password" id="materialFormCardPasswordEx" (ngModel)="password" name="password" class="form-control"
+              mdbInputDirective>
+            <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
+          </div>
+
+          <div class="text-center py-4 mt-3">
+            <button class="btn btn-cyan waves-light" type="submit" [disabled]="!formData.valid" mdbWavesEffect>Create my account</button>
+          </div>
+          <div class="text-center mb-3">
+            <a routerLink="/login" id="goback">Go back</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
 </div>
+  
