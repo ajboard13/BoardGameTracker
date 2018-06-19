@@ -54,9 +54,18 @@
       </div>
     </div>
   </div>
-
-  <ng-template #nocontent>
-    <h2><img src="{{ photoUrl }}"/>Hey {{ name }}!</h2>
-    <h3>Looks like you haven't made a username yet! click <a routerLink="/registration" routerLinkActive="active" class="alc">here</a>.</h3>
-  </ng-template>
 </main>
+<ng-template #nocontent>
+  <div class="container animated slideInLeft">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="card col-md-8">
+        <h2><img src="{{ photoUrl }}"/>Hey {{ name }}!</h2>
+        <h3>Looks like you haven't made a username yet! click <a routerLink="/registration" routerLinkActive="active" class="alc">here</a>.</h3>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+  </div>
+</ng-template>

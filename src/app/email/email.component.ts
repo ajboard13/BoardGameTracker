@@ -28,9 +28,12 @@ export class EmailComponent implements OnInit {
 
   onSubmit(formData) {
     if(formData.valid) {
-      console.log(formData.value);
-      this.af.auth.signInWithEmailAndPassword(formData.value.email,formData.value.password);
-    }
+      this.af.auth.signInWithEmailAndPassword(formData.value.email,formData.value.password).catch(result => {
+        if(!result.success){
+          this.error = result.message;
+        } 
+      });
+    } 
   }
 
   ngOnInit() {

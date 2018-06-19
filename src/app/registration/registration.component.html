@@ -1,10 +1,29 @@
-<div class="form-container">
-  
-    <h2>Create Username</h2>
-  
-    <span class="error" *ngIf="error" [@fallIn]='state'>Username can not be empty.</span>
-  
-    <input type="text" placeholder="UserName" [(ngModel)]="UserName" name="UserName" class="txt" required>
-  
-    <button type="submit" (click)="addPlayer()" class="basic-btn">Create my account</button>
+
+
+<div class="container animated slideInLeft">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="card col-md-8">
+      <div class="card-body">
+        <!-- Material form register -->
+          <p class="h4 text-center py-4">Create Username</p>
+
+          <!-- Material input email -->
+          <span class="animated slideInDown" *ngIf="error">Username can not be empty.</span>
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="text" placeholder="UserName" [(ngModel)]="UserName" name="UserName" class="form-control" mdbInputDirective>
+            <label for="materialFormCardEmailEx" class="font-weight-light"></label>
+          </div>
+
+          <div class="text-center py-4 mt-3">
+            <button class="btn btn-cyan waves-light" type="submit" (click)="addPlayer()" mdbWavesEffect>Create User Name</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+    </div>
   </div>
+</div>
+      
