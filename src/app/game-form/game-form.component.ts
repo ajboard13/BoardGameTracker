@@ -151,6 +151,12 @@ export class GameFormComponent implements OnInit {
     });
     
     this.getRoomInfo();
+    
+    this.currentRoom.subscribe(room => {
+      this.minPlayers = room.minPlayers;
+      this.maxPlayers = room.maxPlayers;
+    });
+
     this.numPlayers = 2;
   }
 

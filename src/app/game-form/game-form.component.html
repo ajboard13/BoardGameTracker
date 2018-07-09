@@ -17,7 +17,7 @@
                   <p>Players</p>
                   <div *ngFor="let player of players | async; let i = index;">
                     <label>
-                      <input type= "checkbox" value="{{ player | json}}" (change)="onCheckChange($event)" [disabled]="this.temp >= 4 && isChecked(player.UserName)">{{ player.UserName }}
+                      <input type= "checkbox" value="{{ player | json}}" (change)="onCheckChange($event)" [disabled]="this.temp >= maxPlayers && isChecked(player.UserName)">{{ player.UserName }}
                     </label>
                   </div>
                 </div>
